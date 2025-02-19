@@ -21,7 +21,7 @@ var player;
   
 var screenSelector = "start";  
 
-var obstacles;
+var coins;
 /*******************************************************/
 // setup()
 /*******************************************************/
@@ -29,7 +29,7 @@ function setup() {
     console.log("setup: ");
     cnv= new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
     
-    obstacles = new Group();
+    coins = new Group();
 
     floor =  new Sprite(SCREEN_WIDTH/2,  SCREEN_HEIGHT, SCREEN_WIDTH, 4, 's');
     floor.color = color("black");
@@ -71,13 +71,13 @@ function newObstacle(){
     obstacle.color = color("yellow");
     obstacle.vel.x = -10;
     
-    obstacles.add(obstacle);
+    coins.add(obstacle);
 }
 
 function youDead(_player, _obstacle){
     screenSelector = "end";
     player.remove();
-    obstacles.removeAll();
+    coins.removeAll();
 }
 
 // Main screen functions
@@ -128,7 +128,7 @@ function endScreen(){
 function resetGame(){
     player = new Sprite(PLAYER_WIDTH*1.2,  SCREEN_HEIGHT/2, PLAYER_WIDTH, PLAYER_HEIGHT, 'd');
     player.color = color("purple");
-    player.collides(obstacles, youDead);
+    player.collides(coins, youDead);
     score = 0;
 }
 
